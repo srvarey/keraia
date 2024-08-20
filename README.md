@@ -1,1 +1,1 @@
-# keraia Knowledge Engineering and Reference AI Architecture
+# KERAIA -  Knowledge Engineering and Reference AI Architecture
