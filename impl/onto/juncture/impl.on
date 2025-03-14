@@ -1,0 +1,129 @@
+<rdf:RDF xmlns="http://www.example.org/ontology#"
+     xml:base="http://www.example.org/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <owl:Ontology rdf:about="http://www.example.org/ontology"/>
+
+    <!-- Define Junctures -->
+    <owl:Class rdf:about="#ThreatDetection"/>
+    <owl:Class rdf:about="#ThreatClassification"/>
+    <owl:Class rdf:about="#SensorFusionForThreatConfirmation"/>
+    <owl:Class rdf:about="#OperationalReadinessAssessment"/>
+    <owl:Class rdf:about="#TacticalDecisionMaking"/>
+    <owl:Class rdf:about="#FleetCoordination"/>
+
+    <!-- Define Dimensions as Sub-Classes of Junctures -->
+    <owl:Class rdf:about="#SensorDataProcessing">
+        <rdfs:subClassOf rdf:resource="#ThreatDetection"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="#ThreatEvaluation">
+        <rdfs:subClassOf rdf:resource="#ThreatClassification"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="#MultiSensorIntegration">
+        <rdfs:subClassOf rdf:resource="#SensorFusionForThreatConfirmation"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="#ReadinessAssessment">
+        <rdfs:subClassOf rdf:resource="#OperationalReadinessAssessment"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="#DecisionExecution">
+        <rdfs:subClassOf rdf:resource="#TacticalDecisionMaking"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="#FleetAdaptation">
+        <rdfs:subClassOf rdf:resource="#FleetCoordination"/>
+    </owl:Class>
+
+    <!-- Define Knowledge Sources as Individuals -->
+    <owl:NamedIndividual rdf:about="#KS_TR1"/>
+    <owl:NamedIndividual rdf:about="#KS_TR2"/>
+    <owl:NamedIndividual rdf:about="#KS_SF1"/>
+    <owl:NamedIndividual rdf:about="#KS_SF2"/>
+    <owl:NamedIndividual rdf:about="#KS_EC1"/>
+    <owl:NamedIndividual rdf:about="#KS_EC2"/>
+    <owl:NamedIndividual rdf:about="#KS_EC3"/>
+    <owl:NamedIndividual rdf:about="#KS_TR3"/>
+    <owl:NamedIndividual rdf:about="#KS_TR4"/>
+    <owl:NamedIndividual rdf:about="#KS_FC2"/>
+    <owl:NamedIndividual rdf:about="#KS_FC3"/>
+    <owl:NamedIndividual rdf:about="#KS_TR5"/>
+    <owl:NamedIndividual rdf:about="#KS_OR1"/>
+    <owl:NamedIndividual rdf:about="#KS_OR2"/>
+    <owl:NamedIndividual rdf:about="#KS_OR3"/>
+    <owl:NamedIndividual rdf:about="#KS_FC1"/>
+
+    <!-- Link Knowledge Sources to Dimensions -->
+    <owl:ObjectProperty rdf:about="#belongsToDimension"/>
+
+    <owl:NamedIndividual rdf:about="#ThreatDetection">
+        <belongsToDimension rdf:resource="#SensorDataProcessing"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#SensorDataProcessing">
+        <belongsToDimension rdf:resource="#KS_TR1"/>
+        <belongsToDimension rdf:resource="#KS_TR2"/>
+        <belongsToDimension rdf:resource="#KS_SF1"/>
+        <belongsToDimension rdf:resource="#KS_SF2"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#ThreatClassification">
+        <belongsToDimension rdf:resource="#ThreatEvaluation"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#ThreatEvaluation">
+        <belongsToDimension rdf:resource="#KS_EC1"/>
+        <belongsToDimension rdf:resource="#KS_EC2"/>
+        <belongsToDimension rdf:resource="#KS_EC3"/>
+        <belongsToDimension rdf:resource="#KS_TR3"/>
+        <belongsToDimension rdf:resource="#KS_TR4"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#SensorFusionForThreatConfirmation">
+        <belongsToDimension rdf:resource="#MultiSensorIntegration"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#MultiSensorIntegration">
+        <belongsToDimension rdf:resource="#KS_SF1"/>
+        <belongsToDimension rdf:resource="#KS_SF2"/>
+        <belongsToDimension rdf:resource="#KS_SF3"/>
+        <belongsToDimension rdf:resource="#KS_TR3"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#OperationalReadinessAssessment">
+        <belongsToDimension rdf:resource="#ReadinessAssessment"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#ReadinessAssessment">
+        <belongsToDimension rdf:resource="#KS_OR1"/>
+        <belongsToDimension rdf:resource="#KS_OR2"/>
+        <belongsToDimension rdf:resource="#KS_OR3"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#TacticalDecisionMaking">
+        <belongsToDimension rdf:resource="#DecisionExecution"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#DecisionExecution">
+        <belongsToDimension rdf:resource="#KS_FC2"/>
+        <belongsToDimension rdf:resource="#KS_FC3"/>
+        <belongsToDimension rdf:resource="#KS_TR5"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#FleetCoordination">
+        <belongsToDimension rdf:resource="#FleetAdaptation"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#FleetAdaptation">
+        <belongsToDimension rdf:resource="#KS_FC1"/>
+        <belongsToDimension rdf:resource="#KS_FC2"/>
+        <belongsToDimension rdf:resource="#KS_FC3"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
+
