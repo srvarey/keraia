@@ -1,0 +1,81 @@
+<rdf:RDF xmlns="http://www.example.org/ontology#"
+     xml:base="http://www.example.org/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <owl:Ontology rdf:about="http://www.example.org/ontology"/>
+
+    <!-- Define Object Properties for DRels -->
+    <owl:ObjectProperty rdf:about="#sensor-fusion"/>
+    <owl:ObjectProperty rdf:about="#updates-status"/>
+    <owl:ObjectProperty rdf:about="#threat-classification"/>
+    <owl:ObjectProperty rdf:about="#uses-intelligence"/>
+    <owl:ObjectProperty rdf:about="#fleet-formation-update"/>
+    <owl:ObjectProperty rdf:about="#engagement-protocols"/>
+
+    <!-- Define Knowledge Sources -->
+    <owl:NamedIndividual rdf:about="#KS_SF3"/>
+    <owl:NamedIndividual rdf:about="#KS_TR1"/>
+    <owl:NamedIndividual rdf:about="#KS_TR2"/>
+    <owl:NamedIndividual rdf:about="#KS_OR1"/>
+    <owl:NamedIndividual rdf:about="#KS_OR2"/>
+    <owl:NamedIndividual rdf:about="#KS_OR3"/>
+    <owl:NamedIndividual rdf:about="#KS_EC3"/>
+    <owl:NamedIndividual rdf:about="#KS_EC1"/>
+    <owl:NamedIndividual rdf:about="#KS_TR4"/>
+    <owl:NamedIndividual rdf:about="#KS_TR5"/>
+    <owl:NamedIndividual rdf:about="#KS_FC1"/>
+    <owl:NamedIndividual rdf:about="#KS_FC2"/>
+    <owl:NamedIndividual rdf:about="#KS_FC3"/>
+
+    <!-- DRel 1: Threat Sensor Integration -->
+    <owl:NamedIndividual rdf:about="#SensorFusionRelation">
+        <rdf:type rdf:resource="#sensor-fusion"/>
+        <sensor-fusion rdf:resource="#KS_SF3"/>
+        <sensor-fusion rdf:resource="#KS_TR1"/>
+        <sensor-fusion rdf:resource="#KS_TR2"/>
+    </owl:NamedIndividual>
+
+    <!-- DRel 2: Fleet Readiness Adjustment -->
+    <owl:NamedIndividual rdf:about="#FleetReadinessRelation">
+        <rdf:type rdf:resource="#updates-status"/>
+        <updates-status rdf:resource="#KS_OR1"/>
+        <updates-status rdf:resource="#KS_OR2"/>
+        <updates-status rdf:resource="#KS_OR3"/>
+    </owl:NamedIndividual>
+
+    <!-- DRel 3: Tactical Threat Assessment -->
+    <owl:NamedIndividual rdf:about="#ThreatAssessmentRelation">
+        <rdf:type rdf:resource="#threat-classification"/>
+        <threat-classification rdf:resource="#KS_FC2"/>
+        <threat-classification rdf:resource="#KS_EC3"/>
+        <threat-classification rdf:resource="#KS_TR5"/>
+    </owl:NamedIndividual>
+
+    <!-- DRel 4: Intelligence-Driven Classification -->
+    <owl:NamedIndividual rdf:about="#IntelligenceRelation">
+        <rdf:type rdf:resource="#uses-intelligence"/>
+        <uses-intelligence rdf:resource="#KS_EC3"/>
+        <uses-intelligence rdf:resource="#KS_EC1"/>
+        <uses-intelligence rdf:resource="#KS_TR4"/>
+    </owl:NamedIndividual>
+
+    <!-- DRel 5: Fleet Positioning Based on Threats -->
+    <owl:NamedIndividual rdf:about="#FleetFormationRelation">
+        <rdf:type rdf:resource="#fleet-formation-update"/>
+        <fleet-formation-update rdf:resource="#KS_FC1"/>
+        <fleet-formation-update rdf:resource="#KS_FC2"/>
+        <fleet-formation-update rdf:resource="#KS_FC3"/>
+    </owl:NamedIndividual>
+
+    <!-- DRel 6: Command Decisions Based on Sensor Fusion -->
+    <owl:NamedIndividual rdf:about="#EngagementProtocolRelation">
+        <rdf:type rdf:resource="#engagement-protocols"/>
+        <engagement-protocols rdf:resource="#KS_TR5"/>
+        <engagement-protocols rdf:resource="#KS_SF3"/>
+        <engagement-protocols rdf:resource="#KS_FC2"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>

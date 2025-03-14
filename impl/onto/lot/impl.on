@@ -1,0 +1,140 @@
+<rdf:RDF xmlns="http://www.example.org/ontology#"
+     xml:base="http://www.example.org/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <owl:Ontology rdf:about="http://www.example.org/ontology"/>
+
+    <!-- Define LoT Class -->
+    <owl:Class rdf:about="#LineOfThought"/>
+    <owl:Class rdf:about="#LoTStep"/>
+    
+    <!-- Define Object Properties to link steps -->
+    <owl:ObjectProperty rdf:about="#hasStep"/>
+    <owl:ObjectProperty rdf:about="#involvesKnowledgeSource"/>
+    <owl:ObjectProperty rdf:about="#precedesStep"/>
+
+    <!-- Define Named Individuals for Lines of Thought -->
+    
+    <!-- Threat Detection and Classification -->
+    <owl:NamedIndividual rdf:about="#LoT_Threat_Detection">
+        <rdf:type rdf:resource="#LineOfThought"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step1_InitialDetection">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_TR1"/>
+        <involvesKnowledgeSource rdf:resource="#KS_TR2"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step2_TrackingAndFusion">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_TR3"/>
+        <involvesKnowledgeSource rdf:resource="#KS_SF1"/>
+        <involvesKnowledgeSource rdf:resource="#KS_SF3"/>
+        <precedesStep rdf:resource="#Step1_InitialDetection"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step3_Classification">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_EC1"/>
+        <involvesKnowledgeSource rdf:resource="#KS_EC2"/>
+        <involvesKnowledgeSource rdf:resource="#KS_EC3"/>
+        <precedesStep rdf:resource="#Step2_TrackingAndFusion"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step4_IntelligenceReports">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_TR4"/>
+        <involvesKnowledgeSource rdf:resource="#KS_TR5"/>
+        <precedesStep rdf:resource="#Step3_Classification"/>
+    </owl:NamedIndividual>
+
+    <!-- Link Steps to LoT -->
+    <hasStep rdf:resource="#Step1_InitialDetection"/>
+    <hasStep rdf:resource="#Step2_TrackingAndFusion"/>
+    <hasStep rdf:resource="#Step3_Classification"/>
+    <hasStep rdf:resource="#Step4_IntelligenceReports"/>
+
+    <!-- Operational Readiness Assessment -->
+    <owl:NamedIndividual rdf:about="#LoT_Operational_Readiness">
+        <rdf:type rdf:resource="#LineOfThought"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step1_StatusAssessment">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_OR1"/>
+        <involvesKnowledgeSource rdf:resource="#KS_OR2"/>
+        <involvesKnowledgeSource rdf:resource="#KS_OR3"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step2_MissionFeasibility">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_FC1"/>
+        <involvesKnowledgeSource rdf:resource="#KS_FC2"/>
+        <precedesStep rdf:resource="#Step1_StatusAssessment"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step3_FinalDecision">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_FC3"/>
+        <involvesKnowledgeSource rdf:resource="#KS_TR5"/>
+        <precedesStep rdf:resource="#Step2_MissionFeasibility"/>
+    </owl:NamedIndividual>
+
+    <!-- Sensor Fusion for Decision Making -->
+    <owl:NamedIndividual rdf:about="#LoT_Sensor_Fusion">
+        <rdf:type rdf:resource="#LineOfThought"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step1_DataCollection">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_SF1"/>
+        <involvesKnowledgeSource rdf:resource="#KS_SF2"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step2_DataIntegration">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_SF3"/>
+        <precedesStep rdf:resource="#Step1_DataCollection"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step3_ThreatClassification">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_EC1"/>
+        <involvesKnowledgeSource rdf:resource="#KS_EC3"/>
+        <precedesStep rdf:resource="#Step2_DataIntegration"/>
+    </owl:NamedIndividual>
+
+    <!-- Fleet Coordination and Threat Response -->
+    <owl:NamedIndividual rdf:about="#LoT_Fleet_Coordination">
+        <rdf:type rdf:resource="#LineOfThought"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step1_ThreatAnalysis">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_FC2"/>
+        <involvesKnowledgeSource rdf:resource="#KS_EC3"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step2_FleetPositioning">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_FC1"/>
+        <involvesKnowledgeSource rdf:resource="#KS_FC3"/>
+        <precedesStep rdf:resource="#Step1_ThreatAnalysis"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Step3_EngagementDecision">
+        <rdf:type rdf:resource="#LoTStep"/>
+        <involvesKnowledgeSource rdf:resource="#KS_TR5"/>
+        <involvesKnowledgeSource rdf:resource="#KS_TR4"/>
+        <precedesStep rdf:resource="#Step2_FleetPositioning"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
+
+
+
+

@@ -1,0 +1,116 @@
+<rdf:RDF xmlns="http://www.example.org/ontology#"
+     xml:base="http://www.example.org/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  
+    <owl:Ontology rdf:about="http://www.example.org/ontology"/>
+
+    <!-- Define Knowledge Source Class -->
+    <owl:Class rdf:about="#KnowledgeSource"/>
+
+    <!-- Define Properties for Knowledge Sources -->
+    <owl:DatatypeProperty rdf:about="#status"/>
+    <owl:DatatypeProperty rdf:about="#detectionCapability"/>
+    <owl:DatatypeProperty rdf:about="#range"/>
+    <owl:DatatypeProperty rdf:about="#sensorRange"/>
+    <owl:DatatypeProperty rdf:about="#trackingAlgorithm"/>
+    <owl:DatatypeProperty rdf:about="#confidenceLevel"/>
+    <owl:DatatypeProperty rdf:about="#rulesOfEngagement"/>
+    <owl:DatatypeProperty rdf:about="#fuelLevels"/>
+    <owl:DatatypeProperty rdf:about="#ammunition"/>
+    <owl:DatatypeProperty rdf:about="#fatigueLevel"/>
+    <owl:DatatypeProperty rdf:about="#crewRotation"/>
+    <owl:DatatypeProperty rdf:about="#fusionAlgorithm"/>
+    <owl:DatatypeProperty rdf:about="#combinedConfidence"/>
+    <owl:DatatypeProperty rdf:about="#knownSignatures"/>
+    <owl:DatatypeProperty rdf:about="#decisionThreshold"/>
+    <owl:DatatypeProperty rdf:about="#threatLevel"/>
+    <owl:DatatypeProperty rdf:about="#recommendedAction"/>
+    <owl:DatatypeProperty rdf:about="#decisionModel"/>
+
+    <!-- Define Instances of Knowledge Sources -->
+
+    <!-- Threat Response KS -->
+    <owl:NamedIndividual rdf:about="#KS-TR1">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <status rdf:datatype="xsd:string">active</status>
+        <detectionCapability rdf:datatype="xsd:string">radar</detectionCapability>
+        <range rdf:datatype="xsd:string">100 nautical miles</range>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-TR2">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <sensorRange rdf:datatype="xsd:string">5 nautical miles</sensorRange>
+        <detectionMode rdf:datatype="xsd:string">passive/active</detectionMode>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-TR3">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <confirmedTracks rdf:datatype="xsd:integer">3</confirmedTracks>
+        <trackingAlgorithm rdf:datatype="xsd:string">Kalman filter</trackingAlgorithm>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-TR4">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <recentSightings rdf:datatype="xsd:string">enemy submarine detected</recentSightings>
+        <confidenceLevel rdf:datatype="xsd:string">80%</confidenceLevel>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-TR5">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <rulesOfEngagement rdf:datatype="xsd:string">Engage if confirmed hostile</rulesOfEngagement>
+    </owl:NamedIndividual>
+
+    <!-- Operational Readiness KS -->
+    <owl:NamedIndividual rdf:about="#KS-OR1">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <status rdf:datatype="xsd:string">combat ready</status>
+        <fuelLevels rdf:datatype="xsd:string">80%</fuelLevels>
+        <ammunition rdf:datatype="xsd:string">90%</ammunition>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-OR2">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <radar rdf:datatype="xsd:string">operational</radar>
+        <sonobuoyNetwork rdf:datatype="xsd:string">functional</sonobuoyNetwork>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-OR3">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <fatigueLevel rdf:datatype="xsd:string">low</fatigueLevel>
+        <crewRotation rdf:datatype="xsd:string">scheduled</crewRotation>
+    </owl:NamedIndividual>
+
+    <!-- Enemy Classification KS -->
+    <owl:NamedIndividual rdf:about="#KS-EC1">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <knownSignatures rdf:datatype="xsd:string">Type-212 Submarine, Kilo-Class Submarine</knownSignatures>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-EC3">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <classification rdf:datatype="xsd:string">pending</classification>
+        <decisionThreshold rdf:datatype="xsd:string">90%</decisionThreshold>
+    </owl:NamedIndividual>
+
+    <!-- Fleet Coordination KS -->
+    <owl:NamedIndividual rdf:about="#KS-FC1">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <currentFormation rdf:datatype="xsd:string">defensive perimeter</currentFormation>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-FC2">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <threatLevel rdf:datatype="xsd:string">high</threatLevel>
+        <recommendedAction rdf:datatype="xsd:string">disperse</recommendedAction>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#KS-FC3">
+        <rdf:type rdf:resource="#KnowledgeSource"/>
+        <decisionModel rdf:datatype="xsd:string">Markov Decision Process</decisionModel>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
+
