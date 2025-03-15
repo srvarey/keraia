@@ -1,0 +1,37 @@
+;; Define Juncture Template
+(deftemplate Juncture
+    (slot id)
+    (slot name)
+    (slot dimension)
+    (multislot knowledge-sources))
+
+;; Define Facts for Junctures and Dimensions
+(deffacts juncture-list
+    (Juncture (id "J1") (name "Threat Detection") (dimension "Sensor Data Processing") 
+              (knowledge-sources "KS_TR1" "KS_TR2" "KS_SF1" "KS_SF2"))
+    
+    (Juncture (id "J2") (name "Threat Classification") (dimension "Threat Evaluation") 
+              (knowledge-sources "KS_EC1" "KS_EC2" "KS_EC3" "KS_TR3" "KS_TR4"))
+    
+    (Juncture (id "J3") (name "Sensor Fusion for Threat Confirmation") (dimension "Multi-Sensor Integration") 
+              (knowledge-sources "KS_SF1" "KS_SF2" "KS_SF3" "KS_TR3"))
+    
+    (Juncture (id "J4") (name "Operational Readiness Assessment") (dimension "Readiness Assessment") 
+              (knowledge-sources "KS_OR1" "KS_OR2" "KS_OR3"))
+    
+    (Juncture (id "J5") (name "Tactical Decision Making") (dimension "Decision Execution") 
+              (knowledge-sources "KS_FC2" "KS_FC3" "KS_TR5"))
+    
+    (Juncture (id "J6") (name "Fleet Coordination") (dimension "Fleet Adaptation") 
+              (knowledge-sources "KS_FC1" "KS_FC2" "KS_FC3"))
+)
+
+;; Define Rules for Juncture Processing
+(defrule process-juncture
+    (Juncture (id ?jid) (name ?jname) (dimension ?dim) (knowledge-sources $?ks))
+    =>
+    (printout t "Processing Juncture: " ?jid " - " ?jname crlf)
+    (printout t "Dimension: " ?dim crlf)
+    (printout t "Associated Knowledge Sources: " ?ks crlf)
+)
+

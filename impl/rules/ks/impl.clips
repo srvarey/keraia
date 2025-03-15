@@ -1,0 +1,127 @@
+;; Define the Knowledge Source Template
+
+(deftemplate KnowledgeSource
+    (slot id)
+    (slot type)
+    (slot status)
+    (slot attribute)
+    (slot value))
+
+;; Define Threat Response Knowledge Sources
+(deffacts threat-response-knowledge
+    (KnowledgeSource (id "KS_TR1") (type "knowledge source") (status "active") 
+                     (attribute "detection capability") (value "radar"))
+    (KnowledgeSource (id "KS_TR1") (type "knowledge source") 
+                     (attribute "range") (value "100 nautical miles"))
+    (KnowledgeSource (id "KS_TR2") (type "knowledge source") 
+                     (attribute "sensor range") (value "5 nautical miles"))
+    (KnowledgeSource (id "KS_TR2") (type "knowledge source") 
+                     (attribute "detection mode") (value "passive/active"))
+    (KnowledgeSource (id "KS_TR3") (type "knowledge source") 
+                     (attribute "confirmed tracks") (value "3"))
+    (KnowledgeSource (id "KS_TR3") (type "knowledge source") 
+                     (attribute "tracking algorithm") (value "Kalman filter"))
+    (KnowledgeSource (id "KS_TR4") (type "knowledge source") 
+                     (attribute "recent sightings") (value "enemy submarine detected"))
+    (KnowledgeSource (id "KS_TR4") (type "knowledge source") 
+                     (attribute "confidence level") (value "80%"))
+    (KnowledgeSource (id "KS_TR5") (type "knowledge source") 
+                     (attribute "rules of engagement") (value "Engage if confirmed hostile"))
+)
+
+;; Define Operational Readiness Knowledge Sources
+(deffacts operational-readiness
+    (KnowledgeSource (id "KS_OR1") (type "knowledge source") (status "combat ready"))
+    (KnowledgeSource (id "KS_OR1") (type "knowledge source") 
+                     (attribute "fuel levels") (value "80%"))
+    (KnowledgeSource (id "KS_OR1") (type "knowledge source") 
+                     (attribute "ammunition") (value "90%"))
+    (KnowledgeSource (id "KS_OR2") (type "knowledge source") 
+                     (attribute "radar") (value "operational"))
+    (KnowledgeSource (id "KS_OR2") (type "knowledge source") 
+                     (attribute "sonobuoy network") (value "functional"))
+    (KnowledgeSource (id "KS_OR3") (type "knowledge source") 
+                     (attribute "fatigue level") (value "low"))
+    (KnowledgeSource (id "KS_OR3") (type "knowledge source") 
+                     (attribute "crew rotation") (value "scheduled"))
+)
+
+;; Define Sensor Fusion Knowledge Sources
+(deffacts sensor-fusion-knowledge
+    (KnowledgeSource (id "KS_SF1") (type "knowledge source") 
+                     (attribute "detection") (value "acoustic anomaly"))
+    (KnowledgeSource (id "KS_SF1") (type "knowledge source") 
+                     (attribute "confidence") (value "50%"))
+    (KnowledgeSource (id "KS_SF2") (type "knowledge source") 
+                     (attribute "detection") (value "object at 50m depth"))
+    (KnowledgeSource (id "KS_SF2") (type "knowledge source") 
+                     (attribute "classification") (value "unknown"))
+    (KnowledgeSource (id "KS_SF3") (type "knowledge source") 
+                     (attribute "fusion algorithm") (value "Bayesian Inference"))
+    (KnowledgeSource (id "KS_SF3") (type "knowledge source") 
+                     (attribute "combined confidence") (value "75%"))
+)
+
+;; Define Enemy Classification Knowledge Sources
+(deffacts enemy-classification-knowledge
+    (KnowledgeSource (id "KS_EC1") (type "knowledge source") 
+                     (attribute "known signatures") (value "Type-212 Submarine, Kilo-Class Submarine"))
+    (KnowledgeSource (id "KS_EC2") (type "knowledge source") 
+                     (attribute "acoustic signature") (value "unknown"))
+    (KnowledgeSource (id "KS_EC2") (type "knowledge source") 
+                     (attribute "depth") (value "300m"))
+    (KnowledgeSource (id "KS_EC3") (type "knowledge source") 
+                     (attribute "classification") (value "pending"))
+    (KnowledgeSource (id "KS_EC3") (type "knowledge source") 
+                     (attribute "decision threshold") (value "90%"))
+)
+
+;; Define Fleet Coordination Knowledge Sources
+(deffacts fleet-coordination-knowledge
+    (KnowledgeSource (id "KS_FC1") (type "knowledge source") 
+                     (attribute "current formation") (value "defensive perimeter"))
+    (KnowledgeSource (id "KS_FC2") (type "knowledge source") 
+                     (attribute "threat level") (value "high"))
+    (KnowledgeSource (id "KS_FC2") (type "knowledge source") 
+                     (attribute "recommended action") (value "disperse"))
+    (KnowledgeSource (id "KS_FC3") (type "knowledge source") 
+                     (attribute "decision model") (value "Markov Decision Process"))
+)
+
+;; Rule to detect an active knowledge source
+(defrule detect-active-knowledge-source
+    (KnowledgeSource (id ?ks) (status "active"))
+    =>
+    (printout t "Active knowledge source detected: " ?ks crlf))
+
+;; Rule to trigger operational readiness check
+(defrule check-operational-readiness
+    (KnowledgeSource (id "KS_OR1") (status "combat ready"))
+    =>
+    (printout t "Fleet is combat-ready. Assessing fuel and ammunition levels." crlf))
+
+;; Rule to evaluate a high-threat situation
+(defrule evaluate-high-threat
+    (KnowledgeSource (id "KS_FC2") (attribute "threat level") (value "high"))
+    =>
+    (printout t "High threat detected! Recommended action: Disperse fleet." crlf))
+
+;; Rule to process sensor fusion confidence score
+(defrule analyze-sensor-fusion
+    (KnowledgeSource (id "KS_SF3") (attribute "combined confidence") (value ?conf))
+    (test (>= (str-to-number ?conf) 75))
+    =>
+    (printout t "Sensor fusion analysis confirms threat with high confidence!" crlf))
+
+;; Rule to classify an unknown acoustic signature
+(defrule classify-unknown-acoustic-signature
+    (KnowledgeSource (id "KS_EC2") (attribute "acoustic signature") (value "unknown"))
+    =>
+    (printout t "Unknown acoustic signature detected! Performing further classification." crlf))
+
+;; Rule to initiate fleet coordination based on positioning
+(defrule coordinate-fleet-based-on-positioning
+    (KnowledgeSource (id "KS_FC1") (attribute "current formation") (value "defensive perimeter"))
+    =>
+    (printout t "Fleet is in defensive perimeter. Monitoring for potential adjustments." crlf))
+

@@ -1,0 +1,85 @@
+;; Define the Dynamic Relations Template
+
+(deftemplate DRel
+    (slot id)
+    (slot type)
+    (slot relation)
+    (slot source)
+    (slot target)
+    (slot attribute)
+    (slot description))
+
+;; Define Threat Sensor Integration DRels
+(deffacts threat-sensor-integration
+    (DRel (id "DRel1") (type "sensor-fusion") (relation "feeds-detection")
+          (source "KS_SF3") (target "KS_TR1")
+          (attribute "detection-data") (description "Radar APS-124 feeds AI Fusion System"))
+    
+    (DRel (id "DRel1") (type "sensor-fusion") (relation "feeds-confidence")
+          (source "KS_SF3") (target "KS_TR2")
+          (attribute "confidence-score") (description "Sonobuoy Network feeds AI Fusion System"))
+)
+
+;; Define Fleet Readiness Adjustment DRels
+(deffacts fleet-readiness-adjustment
+    (DRel (id "DRel2") (type "updates-status") (relation "feeds-equipment-status")
+          (source "KS_OR1") (target "KS_OR2")
+          (attribute "operational-status") (description "Fleet Readiness updates Equipment Status"))
+    
+    (DRel (id "DRel2") (type "updates-status") (relation "feeds-fatigue")
+          (source "KS_OR1") (target "KS_OR3")
+          (attribute "crew-fatigue-level") (description "Fleet Readiness updates Crew Readiness"))
+)
+
+;; Define Tactical Threat Assessment DRels
+(deffacts tactical-threat-assessment
+    (DRel (id "DRel3") (type "threat-classification") (relation "informs-threat")
+          (source "KS_FC2") (target "KS_EC3")
+          (attribute "threat-label") (description "Threat Level Assessment informs Classification System"))
+
+    (DRel (id "DRel3") (type "threat-classification") (relation "informs-engagement")
+          (source "KS_FC2") (target "KS_TR5")
+          (attribute "engagement-decision") (description "Threat Level Assessment informs Command Center"))
+)
+
+;; Define Intelligence-Driven Classification DRels
+(deffacts intelligence-driven-classification
+    (DRel (id "DRel4") (type "uses-intelligence") (relation "provides-signatures")
+          (source "KS_EC3") (target "KS_EC1")
+          (attribute "known-threat-signatures") (description "Classification System provides Intelligence Database"))
+
+    (DRel (id "DRel4") (type "uses-intelligence") (relation "provides-historical-data")
+          (source "KS_EC3") (target "KS_TR4")
+          (attribute "historical-engagement-data") (description "Classification System provides Intelligence Reports"))
+)
+
+;; Define Fleet Positioning Based on Threats DRels
+(deffacts fleet-positioning
+    (DRel (id "DRel5") (type "fleet-formation-update") (relation "updates-threat-severity")
+          (source "KS_FC1") (target "KS_FC2")
+          (attribute "threat-severity") (description "Fleet Positioning System updates Threat Level Assessment"))
+
+    (DRel (id "DRel5") (type "fleet-formation-update") (relation "updates-formation")
+          (source "KS_FC1") (target "KS_FC3")
+          (attribute "fleet-formation") (description "Fleet Positioning System updates Tactical AI"))
+)
+
+;; Define Command Decisions Based on Sensor Fusion DRels
+(deffacts command-decisions
+    (DRel (id "DRel6") (type "engagement-protocols") (relation "evaluates-confidence")
+          (source "KS_TR5") (target "KS_SF3")
+          (attribute "detection-confidence") (description "Command Center evaluates AI Fusion System confidence"))
+
+    (DRel (id "DRel6") (type "engagement-protocols") (relation "evaluates-threat")
+          (source "KS_TR5") (target "KS_FC2")
+          (attribute "threat-assessment") (description "Command Center evaluates Threat Level Assessment"))
+)
+
+;; Rule to trigger DRel-based processing
+(defrule process-dynamic-relations
+    (DRel (id ?drel-id) (relation ?relation) (source ?source) (target ?target) (attribute ?attr) (description ?desc))
+    =>
+    (printout t "Processing DRel: " ?drel-id ", Relation: " ?relation 
+              ", Source: " ?source ", Target: " ?target ", Attribute: " ?attr
+              ", Description: " ?desc crlf))
+

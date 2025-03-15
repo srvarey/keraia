@@ -1,0 +1,25 @@
+;; Define the Cloud Elaboration Template
+
+(deftemplate CloudElaboration
+    (slot id)
+    (slot knowledge-source)
+    (slot transformation)
+    (slot output))
+
+;; Define Knowledge Sources for Elaboration
+(deffacts knowledge-source-list
+    (CloudElaboration (id "E1") (knowledge-source "KS_TR1") (transformation "refineSonarDetection") (output "Enhanced Sonar Data"))
+    (CloudElaboration (id "E2") (knowledge-source "KS_TR2") (transformation "refineRadarDetection") (output "Refined Radar Signals"))
+    (CloudElaboration (id "E3") (knowledge-source "KS_SF3") (transformation "computeThreatProbability") (output "Threat Probability Analysis"))
+    (CloudElaboration (id "E4") (knowledge-source "KS_FC1") (transformation "synthesizeFleetPosition") (output "Optimized Fleet Positioning"))
+    (CloudElaboration (id "E5") (knowledge-source "KS_TR5") (transformation "updateRulesOfEngagement") (output "Updated Engagement Rules"))
+    (CloudElaboration (id "E6") (knowledge-source "KS_TR4") (transformation "enhanceSituationalAwareness") (output "Enhanced Situational Awareness"))
+)
+
+;; Define Rules for Cloud Elaboration
+(defrule process-cloud-elaboration
+    (CloudElaboration (id ?eid) (knowledge-source ?ks) (transformation ?tfm) (output ?out))
+    =>
+    (printout t "Processing Cloud Elaboration: " ?eid ", Source: " ?ks 
+              ", Transformation: " ?tfm ", Output: " ?out crlf))
+
