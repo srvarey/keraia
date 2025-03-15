@@ -1,0 +1,88 @@
+class Juncture {
+    private String name;
+    private Map<String, List<Case>> dimensions;
+
+    public Juncture(String name) {
+        this.name = name;
+        this.dimensions = new HashMap<>();
+    }
+
+    public void addDimension(String dimensionName, List<Case> cases) {
+        dimensions.put(dimensionName, cases);
+    }
+
+    public void displayJuncture() {
+        System.out.println("Juncture: " + name);
+        for (Map.Entry<String, List<Case>> entry : dimensions.entrySet()) {
+            System.out.println("  Dimension: " + entry.getKey());
+            for (Case c : entry.getValue()) {
+                System.out.println("    - " + c.getCaseName());
+            }
+        }
+        System.out.println("-------------------------------------");
+    }
+}
+
+// Knowledge Case Representation
+class Case {
+    private String caseName;
+
+    public Case(String caseName) {
+        this.caseName = caseName;
+    }
+
+    public String getCaseName() {
+        return caseName;
+    }
+}
+
+public class CBRJuncturesAndDimensions {
+    public static void main(String[] args) {
+        // Define Cases (Knowledge Sources)
+        Case KS_TR1 = new Case("KS-TR1 - Radar APS-124");
+        Case KS_TR2 = new Case("KS-TR2 - Sonobuoy Network");
+        Case KS_SF1 = new Case("KS-SF1 - Sonobuoy Data");
+        Case KS_SF2 = new Case("KS-SF2 - Radar Contacts");
+        Case KS_EC1 = new Case("KS-EC1 - Intelligence Database");
+        Case KS_EC2 = new Case("KS-EC2 - Sensor Data");
+        Case KS_EC3 = new Case("KS-EC3 - Classification System");
+        Case KS_TR3 = new Case("KS-TR3 - Tracking System");
+        Case KS_TR4 = new Case("KS-TR4 - Intelligence Reports");
+        Case KS_SF3 = new Case("KS-SF3 - AI Fusion System");
+        Case KS_OR1 = new Case("KS-OR1 - Fleet Readiness");
+        Case KS_OR2 = new Case("KS-OR2 - Equipment Status");
+        Case KS_OR3 = new Case("KS-OR3 - Crew Readiness");
+        Case KS_FC1 = new Case("KS-FC1 - Fleet Positioning System");
+        Case KS_FC2 = new Case("KS-FC2 - Threat Level Assessment");
+        Case KS_FC3 = new Case("KS-FC3 - Tactical AI");
+        Case KS_TR5 = new Case("KS-TR5 - Command Center");
+
+        // Define Junctures and Assign Dimensions
+        Juncture threatDetection = new Juncture("Threat Detection");
+        threatDetection.addDimension("Sensor Data Processing", Arrays.asList(KS_TR1, KS_TR2, KS_SF1, KS_SF2));
+
+        Juncture threatClassification = new Juncture("Threat Classification");
+        threatClassification.addDimension("Threat Evaluation", Arrays.asList(KS_EC1, KS_EC2, KS_EC3, KS_TR3, KS_TR4));
+
+        Juncture sensorFusion = new Juncture("Sensor Fusion for Threat Confirmation");
+        sensorFusion.addDimension("Multi-Sensor Integration", Arrays.asList(KS_SF1, KS_SF2, KS_SF3, KS_TR3));
+
+        Juncture operationalReadiness = new Juncture("Operational Readiness Assessment");
+        operationalReadiness.addDimension("Readiness Assessment", Arrays.asList(KS_OR1, KS_OR2, KS_OR3));
+
+        Juncture tacticalDecisionMaking = new Juncture("Tactical Decision Making");
+        tacticalDecisionMaking.addDimension("Decision Execution", Arrays.asList(KS_FC2, KS_FC3, KS_TR5));
+
+        Juncture fleetCoordination = new Juncture("Fleet Coordination");
+        fleetCoordination.addDimension("Fleet Adaptation", Arrays.asList(KS_FC1, KS_FC2, KS_FC3));
+
+        // Display Junctures and Their Dimensions
+        List<Juncture> junctures = Arrays.asList(threatDetection, threatClassification, sensorFusion, 
+                                                  operationalReadiness, tacticalDecisionMaking, fleetCoordination);
+
+        System.out.println("\nCBR Junctures and Dimensions:");
+        for (Juncture j : junctures) {
+            j.displayJuncture();
+        }
+    }
+

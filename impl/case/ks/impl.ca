@@ -1,0 +1,147 @@
+
+class Case {
+    private String caseID;
+    private String type;
+    private Map<String, String> attributes;
+    private List<String> adaptationRules;
+
+    public Case(String caseID, String type) {
+        this.caseID = caseID;
+        this.type = type;
+        this.attributes = new HashMap<>();
+        this.adaptationRules = new ArrayList<>();
+    }
+
+    public void addAttribute(String key, String value) {
+        attributes.put(key, value);
+    }
+
+    public void addAdaptationRule(String rule) {
+        adaptationRules.add(rule);
+    }
+
+    public void displayCase() {
+        System.out.println("Case ID: " + caseID);
+        System.out.println("Type: " + type);
+        System.out.println("Attributes: " + attributes);
+        System.out.println("Adaptation Rules: " + adaptationRules);
+        System.out.println("-------------------------------------");
+    }
+}
+
+class CBRSystem {
+    private List<Case> caseBase;
+
+    public CBRSystem() {
+        this.caseBase = new ArrayList<>();
+    }
+
+    public void addCase(Case c) {
+        caseBase.add(c);
+    }
+
+    public void displayCases() {
+        for (Case c : caseBase) {
+            c.displayCase();
+        }
+    }
+}
+
+public class CBRKnowledgeSources {
+    public static void main(String[] args) {
+        CBRSystem cbrSystem = new CBRSystem();
+
+        // Threat Response Knowledge Sources
+        Case ks_tr1 = new Case("KS-TR1", "Knowledge Source");
+        ks_tr1.addAttribute("status", "active");
+        ks_tr1.addAttribute("detection capability", "radar");
+        ks_tr1.addAttribute("range", "100 nautical miles");
+        cbrSystem.addCase(ks_tr1);
+
+        Case ks_tr2 = new Case("KS-TR2", "Knowledge Source");
+        ks_tr2.addAttribute("sensor range", "5 nautical miles");
+        ks_tr2.addAttribute("detection mode", "passive/active");
+        cbrSystem.addCase(ks_tr2);
+
+        Case ks_tr3 = new Case("KS-TR3", "Knowledge Source");
+        ks_tr3.addAttribute("confirmed tracks", "3");
+        ks_tr3.addAttribute("tracking algorithm", "Kalman filter");
+        cbrSystem.addCase(ks_tr3);
+
+        Case ks_tr4 = new Case("KS-TR4", "Knowledge Source");
+        ks_tr4.addAttribute("recent sightings", "enemy submarine detected");
+        ks_tr4.addAttribute("confidence level", "80%");
+        cbrSystem.addCase(ks_tr4);
+
+        Case ks_tr5 = new Case("KS-TR5", "Knowledge Source");
+        ks_tr5.addAttribute("rules of engagement", "Engage if confirmed hostile");
+        cbrSystem.addCase(ks_tr5);
+
+        // Operational Readiness Knowledge Sources
+        Case ks_or1 = new Case("KS-OR1", "Knowledge Source");
+        ks_or1.addAttribute("status", "combat ready");
+        ks_or1.addAttribute("fuel levels", "80%");
+        ks_or1.addAttribute("ammunition", "90%");
+        cbrSystem.addCase(ks_or1);
+
+        Case ks_or2 = new Case("KS-OR2", "Knowledge Source");
+        ks_or2.addAttribute("radar", "operational");
+        ks_or2.addAttribute("sonobuoy network", "functional");
+        cbrSystem.addCase(ks_or2);
+
+        Case ks_or3 = new Case("KS-OR3", "Knowledge Source");
+        ks_or3.addAttribute("fatigue level", "low");
+        ks_or3.addAttribute("crew rotation", "scheduled");
+        cbrSystem.addCase(ks_or3);
+
+        // Sensor Fusion Knowledge Sources
+        Case ks_sf1 = new Case("KS-SF1", "Knowledge Source");
+        ks_sf1.addAttribute("detection", "acoustic anomaly");
+        ks_sf1.addAttribute("confidence", "50%");
+        cbrSystem.addCase(ks_sf1);
+
+        Case ks_sf2 = new Case("KS-SF2", "Knowledge Source");
+        ks_sf2.addAttribute("detection", "object at 50m depth");
+        ks_sf2.addAttribute("classification", "unknown");
+        cbrSystem.addCase(ks_sf2);
+
+        Case ks_sf3 = new Case("KS-SF3", "Knowledge Source");
+        ks_sf3.addAttribute("fusion algorithm", "Bayesian Inference");
+        ks_sf3.addAttribute("combined confidence", "75%");
+        cbrSystem.addCase(ks_sf3);
+
+        // Enemy Classification Knowledge Sources
+        Case ks_ec1 = new Case("KS-EC1", "Knowledge Source");
+        ks_ec1.addAttribute("known signatures", "Type-212 Submarine, Kilo-Class Submarine");
+        cbrSystem.addCase(ks_ec1);
+
+        Case ks_ec2 = new Case("KS-EC2", "Knowledge Source");
+        ks_ec2.addAttribute("acoustic signature", "unknown");
+        ks_ec2.addAttribute("depth", "300m");
+        cbrSystem.addCase(ks_ec2);
+
+        Case ks_ec3 = new Case("KS-EC3", "Knowledge Source");
+        ks_ec3.addAttribute("classification", "pending");
+        ks_ec3.addAttribute("decision threshold", "90%");
+        cbrSystem.addCase(ks_ec3);
+
+        // Fleet Coordination Knowledge Sources
+        Case ks_fc1 = new Case("KS-FC1", "Knowledge Source");
+        ks_fc1.addAttribute("current formation", "defensive perimeter");
+        cbrSystem.addCase(ks_fc1);
+
+        Case ks_fc2 = new Case("KS-FC2", "Knowledge Source");
+        ks_fc2.addAttribute("threat level", "high");
+        ks_fc2.addAttribute("recommended action", "disperse");
+        cbrSystem.addCase(ks_fc2);
+
+        Case ks_fc3 = new Case("KS-FC3", "Knowledge Source");
+        ks_fc3.addAttribute("decision model", "Markov Decision Process");
+        cbrSystem.addCase(ks_fc3);
+
+        // Display all cases
+        System.out.println("CBR Knowledge Base:");
+        cbrSystem.displayCases();
+    }
+}
+

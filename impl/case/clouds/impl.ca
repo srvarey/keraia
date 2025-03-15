@@ -1,0 +1,112 @@
+class Case {
+    private String caseID;
+    private String type;
+    private String problemDescription;
+    private String solution;
+    private List<String> adaptationRules;
+
+    public Case(String caseID, String type, String problemDescription, String solution) {
+        this.caseID = caseID;
+        this.type = type;
+        this.problemDescription = problemDescription;
+        this.solution = solution;
+        this.adaptationRules = new ArrayList<>();
+    }
+
+    public void addAdaptationRule(String rule) {
+        adaptationRules.add(rule);
+    }
+
+    public void displayCase() {
+        System.out.println("Case ID: " + caseID);
+        System.out.println("Type: " + type);
+        System.out.println("Problem: " + problemDescription);
+        System.out.println("Solution: " + solution);
+        System.out.println("Adaptation Rules: " + adaptationRules);
+        System.out.println("-------------------------------------");
+    }
+}
+
+class CBRSystem {
+    private List<Case> caseBase;
+
+    public CBRSystem() {
+        this.caseBase = new ArrayList<>();
+    }
+
+    public void addCase(Case c) {
+        caseBase.add(c);
+    }
+
+    public void displayCases() {
+        for (Case c : caseBase) {
+            c.displayCase();
+        }
+    }
+}
+
+public class CBRImplementation {
+    public static void main(String[] args) {
+        CBRSystem cbrSystem = new CBRSystem();
+
+        // Threat Response Case
+        Case threatResponse = new Case(
+            "Threat_Response",
+            "Cloud",
+            "Detect and classify threats using sensor data.",
+            "Integrate multi-sensor intelligence, classify threats, and suggest responses."
+        );
+        threatResponse.addAdaptationRule("Update classification if new radar/sonar data is received.");
+        threatResponse.addAdaptationRule("Re-evaluate when intelligence reports update.");
+        cbrSystem.addCase(threatResponse);
+
+        // Operational Readiness Case
+        Case operationalReadiness = new Case(
+            "Operational_Readiness",
+            "Cloud",
+            "Assess fleet and crew readiness for mission execution.",
+            "Analyze fleet positioning, equipment status, and crew preparedness."
+        );
+        operationalReadiness.addAdaptationRule("Reassess readiness if equipment failure is detected.");
+        operationalReadiness.addAdaptationRule("Adjust operational status based on crew fatigue.");
+        cbrSystem.addCase(operationalReadiness);
+
+        // Sensor Fusion Case
+        Case sensorFusion = new Case(
+            "Sensor_Fusion",
+            "Cloud",
+            "Combine multiple sensor inputs for refined situational awareness.",
+            "Apply AI-driven fusion to enhance confidence in threat detection."
+        );
+        sensorFusion.addAdaptationRule("Recalculate confidence if new intelligence arrives.");
+        sensorFusion.addAdaptationRule("Adjust detection thresholds based on environmental noise.");
+        cbrSystem.addCase(sensorFusion);
+
+        // Enemy Classification Case
+        Case enemyClassification = new Case(
+            "Enemy_Classification",
+            "Cloud",
+            "Determine if detected contacts match known threats.",
+            "Compare acoustic and radar profiles to an intelligence database."
+        );
+        enemyClassification.addAdaptationRule("Delay classification if confidence is low.");
+        enemyClassification.addAdaptationRule("Re-classify threats when new intelligence is obtained.");
+        cbrSystem.addCase(enemyClassification);
+
+        // Fleet Coordination Case
+        Case fleetCoordination = new Case(
+            "Fleet_Coordination",
+            "Cloud",
+            "Manage fleet positioning and threat response.",
+            "Optimize fleet formation and engage threats dynamically."
+        );
+        fleetCoordination.addAdaptationRule("Switch to defensive formation if threat level rises.");
+        fleetCoordination.addAdaptationRule("Redistribute fleet assets if reinforcements arrive.");
+        cbrSystem.addCase(fleetCoordination);
+
+        // Display all cases
+        System.out.println("CBR Knowledge Base:");
+        cbrSystem.displayCases();
+    }
+}
+

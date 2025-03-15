@@ -1,0 +1,128 @@
+class CaseRelation {
+    private String relationName;
+    private String inverseRelation;
+    private String targetCase;
+    private String sourceCase;
+    private String targetProperty;
+    private String sourceProperty;
+
+    public CaseRelation(String relationName, String inverseRelation, 
+                        String targetCase, String sourceCase, 
+                        String targetProperty, String sourceProperty) {
+        this.relationName = relationName;
+        this.inverseRelation = inverseRelation;
+        this.targetCase = targetCase;
+        this.sourceCase = sourceCase;
+        this.targetProperty = targetProperty;
+        this.sourceProperty = sourceProperty;
+    }
+
+    public void displayRelation() {
+        System.out.println("Relation: " + relationName + " (" + inverseRelation + ")");
+        System.out.println("  Target Case: " + targetCase);
+        System.out.println("  Source Case: " + sourceCase);
+        System.out.println("  Target Property: " + targetProperty);
+        System.out.println("  Source Property: " + sourceProperty);
+        System.out.println("-------------------------------------");
+    }
+}
+
+class CBRRelationSystem {
+    private List<CaseRelation> relations;
+
+    public CBRRelationSystem() {
+        this.relations = new ArrayList<>();
+    }
+
+    public void addRelation(CaseRelation relation) {
+        relations.add(relation);
+    }
+
+    public void displayRelations() {
+        for (CaseRelation relation : relations) {
+            relation.displayRelation();
+        }
+    }
+}
+
+public class CBRDynamicRelations {
+    public static void main(String[] args) {
+        CBRRelationSystem relationSystem = new CBRRelationSystem();
+
+        // DRel 1: Threat Sensor Integration
+        relationSystem.addRelation(new CaseRelation(
+            "sensor-fusion", "feeds-detection",
+            "KS_SF3 (AI Fusion System)", "KS_TR1 (Radar APS-124)",
+            "detection-data", "detection"
+        ));
+        relationSystem.addRelation(new CaseRelation(
+            "sensor-fusion", "feeds-confidence",
+            "KS_SF3 (AI Fusion System)", "KS_TR2 (Sonobuoy Network)",
+            "confidence-score", "confidence"
+        ));
+
+        // DRel 2: Fleet Readiness Adjustment
+        relationSystem.addRelation(new CaseRelation(
+            "updates-status", "feeds-equipment-status",
+            "KS_OR1 (Fleet Readiness)", "KS_OR2 (Equipment Status)",
+            "operational-status", "radar-status"
+        ));
+        relationSystem.addRelation(new CaseRelation(
+            "updates-status", "feeds-fatigue",
+            "KS_OR1 (Fleet Readiness)", "KS_OR3 (Crew Readiness)",
+            "crew-fatigue-level", "fatigue-level"
+        ));
+
+        // DRel 3: Tactical Threat Assessment
+        relationSystem.addRelation(new CaseRelation(
+            "threat-classification", "informs-threat",
+            "KS_FC2 (Threat Level Assessment)", "KS_EC3 (Classification System)",
+            "threat-label", "classification"
+        ));
+        relationSystem.addRelation(new CaseRelation(
+            "threat-classification", "informs-engagement",
+            "KS_FC2 (Threat Level Assessment)", "KS_TR5 (Command Center)",
+            "engagement-decision", "rules-of-engagement"
+        ));
+
+        // DRel 4: Intelligence-Driven Classification
+        relationSystem.addRelation(new CaseRelation(
+            "uses-intelligence", "provides-signatures",
+            "KS_EC3 (Classification System)", "KS_EC1 (Intelligence Database)",
+            "known-threat-signatures", "known-signatures"
+        ));
+        relationSystem.addRelation(new CaseRelation(
+            "uses-intelligence", "provides-historical-data",
+            "KS_EC3 (Classification System)", "KS_TR4 (Intelligence Reports)",
+            "historical-engagement-data", "historical-data"
+        ));
+
+        // DRel 5: Fleet Positioning Based on Threats
+        relationSystem.addRelation(new CaseRelation(
+            "fleet-formation-update", "updates-threat-severity",
+            "KS_FC1 (Fleet Positioning System)", "KS_FC2 (Threat Level Assessment)",
+            "threat-severity", "threat-level"
+        ));
+        relationSystem.addRelation(new CaseRelation(
+            "fleet-formation-update", "updates-formation",
+            "KS_FC1 (Fleet Positioning System)", "KS_FC3 (Tactical AI)",
+            "fleet-formation", "new-formation"
+        ));
+
+        // DRel 6: Command Decisions Based on Sensor Fusion
+        relationSystem.addRelation(new CaseRelation(
+            "engagement-protocols", "evaluates-confidence",
+            "KS_TR5 (Command Center)", "KS_SF3 (AI Fusion System)",
+            "detection-confidence", "high-confidence-detection"
+        ));
+        relationSystem.addRelation(new CaseRelation(
+            "engagement-protocols", "evaluates-threat",
+            "KS_TR5 (Command Center)", "KS_FC2 (Threat Level Assessment)",
+            "threat-assessment", "high-threat-level"
+        ));
+
+        // Display all relations
+        System.out.println("CBR Dynamic Relations:");
+        relationSystem.displayRelations();
+    }
+

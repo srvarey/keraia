@@ -1,0 +1,83 @@
+import java.util.*;
+
+class Case {
+    private String caseID;
+    private String type;
+    private Map<String, List<String>> steps;
+
+    public Case(String caseID, String type) {
+        this.caseID = caseID;
+        this.type = type;
+        this.steps = new LinkedHashMap<>();
+    }
+
+    public void addStep(String stepName, String... knowledgeSources) {
+        steps.put(stepName, Arrays.asList(knowledgeSources));
+    }
+
+    public void displayCase() {
+        System.out.println("Case ID: " + caseID);
+        System.out.println("Type: " + type);
+        for (Map.Entry<String, List<String>> step : steps.entrySet()) {
+            System.out.println("  " + step.getKey() + ": " + step.getValue());
+        }
+        System.out.println("-------------------------------------");
+    }
+}
+
+class CBRSystem {
+    private List<Case> caseBase;
+
+    public CBRSystem() {
+        this.caseBase = new ArrayList<>();
+    }
+
+    public void addCase(Case c) {
+        caseBase.add(c);
+    }
+
+    public void displayCases() {
+        for (Case c : caseBase) {
+            c.displayCase();
+        }
+    }
+}
+
+public class CBRLinesOfThought {
+    public static void main(String[] args) {
+        CBRSystem cbrSystem = new CBRSystem();
+
+        // Threat Detection and Classification LoT
+        Case lot_Threat_Detection = new Case("LoT-Threat-Detection", "Line of Thought");
+        lot_Threat_Detection.addStep("Step 1 - Initial Detection", "KS_TR1 (Radar)", "KS_TR2 (Sonobuoy Network)");
+        lot_Threat_Detection.addStep("Step 2 - Tracking and Data Fusion", "KS_TR3 (Tracking System)", "KS_SF1 (Sonobuoy Data)", "KS_SF3 (AI Fusion System)");
+        lot_Threat_Detection.addStep("Step 3 - Classification", "KS_EC1 (Intelligence Database)", "KS_EC2 (Sensor Data)", "KS_EC3 (Classification System)");
+        lot_Threat_Detection.addStep("Step 4 - Threat Validation", "KS_TR4 (Intelligence Reports)", "KS_TR5 (Command Centre)");
+        cbrSystem.addCase(lot_Threat_Detection);
+
+        // Operational Readiness Assessment LoT
+        Case lot_Operational_Readiness = new Case("LoT-Operational-Readiness", "Line of Thought");
+        lot_Operational_Readiness.addStep("Step 1 - Status Assessment", "KS_OR1 (Fleet Readiness)", "KS_OR2 (Equipment Status)", "KS_OR3 (Crew Readiness)");
+        lot_Operational_Readiness.addStep("Step 2 - Mission Feasibility Analysis", "KS_FC1 (Fleet Positioning System)", "KS_FC2 (Threat Level Assessment)");
+        lot_Operational_Readiness.addStep("Step 3 - Final Decision", "KS_FC3 (Tactical AI)", "KS_TR5 (Command Centre)");
+        cbrSystem.addCase(lot_Operational_Readiness);
+
+        // Sensor Fusion for Decision Making LoT
+        Case lot_Sensor_Fusion = new Case("LoT-Sensor-Fusion", "Line of Thought");
+        lot_Sensor_Fusion.addStep("Step 1 - Data Collection", "KS_SF1 (Sonobuoy Data)", "KS_SF2 (Radar Contacts)");
+        lot_Sensor_Fusion.addStep("Step 2 - Data Integration and Analysis", "KS_SF3 (AI Fusion System)");
+        lot_Sensor_Fusion.addStep("Step 3 - Threat Classification", "KS_EC1 (Intelligence Database)", "KS_EC3 (Classification System)");
+        cbrSystem.addCase(lot_Sensor_Fusion);
+
+        // Fleet Coordination and Threat Response LoT
+        Case lot_Fleet_Coordination = new Case("LoT-Fleet-Coordination", "Line of Thought");
+        lot_Fleet_Coordination.addStep("Step 1 - Real-Time Threat Analysis", "KS_FC2 (Threat Level Assessment)", "KS_EC3 (Classification System)");
+        lot_Fleet_Coordination.addStep("Step 2 - Fleet Position Adjustment", "KS_FC1 (Fleet Positioning System)", "KS_FC3 (Tactical AI)");
+        lot_Fleet_Coordination.addStep("Step 3 - Engagement Decision", "KS_TR5 (Command Center)", "KS_TR4 (Intelligence Reports)");
+        cbrSystem.addCase(lot_Fleet_Coordination);
+
+        // Display all cases
+        System.out.println("CBR Lines of Thought:");
+        cbrSystem.displayCases();
+    }
+
