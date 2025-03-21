@@ -1,0 +1,531 @@
+package ksconvocation;
+
+import org.apache.jena.ontology.*;
+import org.apache.jena.rdf.model.ModelFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/*
+ONTOLOGIES
+ */
+class NavalOntology {
+    private static final String BASE_URI = "http://example.org/naval#";
+    private OntModel model;
+
+    public NavalOntology() {
+        model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+    }
+
+    /**
+     * Create ontology classes representing naval concepts.
+     */
+    public void createClasses() {
+        // Core Entities
+        OntClass threat = model.createClass(BASE_URI + "Threat"); // Class #1
+        OntClass ship = model.createClass(BASE_URI + "Ship"); // Class #2
+        OntClass fleet = model.createClass(BASE_URI + "Fleet"); // Class #3
+        OntClass sensor = model.createClass(BASE_URI + "Sensor"); // Class #4
+        OntClass weapon = model.createClass(BASE_URI + "Weapon"); // Class #5
+        OntClass tacticalDecision = model.createClass(BASE_URI + "TacticalDecision"); // Class #6
+
+        // Additional Entities
+        OntClass mission = model.createClass(BASE_URI + "Mission"); // Class #7
+        OntClass surveillanceMission = model.createClass(BASE_URI + "SurveillanceMission"); // Class #8
+        OntClass attackPlan = model.createClass(BASE_URI + "AttackPlan"); // Class #9
+        OntClass fleetCoordination = model.createClass(BASE_URI + "FleetCoordination"); // Class #10
+        OntClass threatResponse = model.createClass(BASE_URI + "ThreatResponse"); // Class #11
+
+        // Hierarchical Class Links
+        OntClass submarineThreat = model.createClass(BASE_URI + "SubmarineThreat"); // Class #12
+        submarineThreat.addSuperClass(threat); // Hierarchy Link #1
+
+        OntClass airborneThreat = model.createClass(BASE_URI + "AirborneThreat"); // Class #13
+        airborneThreat.addSuperClass(threat); // Hierarchy Link #2
+
+        OntClass destroyerShip = model.createClass(BASE_URI + "Destroyer"); // Class #14
+        destroyerShip.addSuperClass(ship); // Hierarchy Link #3
+
+        OntClass frigateShip = model.createClass(BASE_URI + "Frigate"); // Class #15
+        frigateShip.addSuperClass(ship); // Hierarchy Link #4
+
+        OntClass surveillanceSensor = model.createClass(BASE_URI + "SurveillanceSensor"); // Class #16
+        surveillanceSensor.addSuperClass(sensor); // Hierarchy Link #5
+
+        OntClass radarSensor = model.createClass(BASE_URI + "RadarSensor"); // Class #17
+        radarSensor.addSuperClass(sensor); // Hierarchy Link #6
+
+        // Clouds of Knowledge
+        OntClass cloud = model.createClass(BASE_URI + "Cloud"); // Class #18
+        OntClass threatResponseCloud = model.createClass(BASE_URI + "ThreatResponseCloud"); // Class #19
+        threatResponseCloud.addSuperClass(cloud); // Hierarchy Link #7
+        OntClass operationalReadinessCloud = model.createClass(BASE_URI + "OperationalReadinessCloud"); // Class #20
+        operationalReadinessCloud.addSuperClass(cloud); // Hierarchy Link #8
+        OntClass sensorFusionCloud = model.createClass(BASE_URI + "SensorFusionCloud"); // Class #21
+        sensorFusionCloud.addSuperClass(cloud); // Hierarchy Link #9
+        OntClass enemyClassificationCloud = model.createClass(BASE_URI + "EnemyClassificationCloud"); // Class #22
+        enemyClassificationCloud.addSuperClass(cloud); // Hierarchy Link #10
+        OntClass fleetCoordinationCloud = model.createClass(BASE_URI + "FleetCoordinationCloud"); // Class #23
+        fleetCoordinationCloud.addSuperClass(cloud); // Hierarchy Link #11
+
+        // Lines of Thought (LoT)
+        OntClass lineOfThought = model.createClass(BASE_URI + "LineOfThought"); // Class #24
+        OntClass lotThreatDetectionAndClassification = model.createClass(BASE_URI + "LotThreatDetectionAndClassification"); // Class #25
+        lotThreatDetectionAndClassification.addSuperClass(lineOfThought); // Hierarchy Link #12
+        OntClass lotOperationalReadinessAssessment = model.createClass(BASE_URI + "LotOperationalReadinessAssessment"); // Class #26
+        lotOperationalReadinessAssessment.addSuperClass(lineOfThought); // Hierarchy Link #13
+        OntClass lotSensorFusionForDecisionMaking = model.createClass(BASE_URI + "LotSensorFusionForDecisionMaking"); // Class #27
+        lotSensorFusionForDecisionMaking.addSuperClass(lineOfThought); // Hierarchy Link #14
+        OntClass lotFleetCoordinationAndThreatResponse = model.createClass(BASE_URI + "LotFleetCoordinationAndThreatResponse"); // Class #28
+        lotFleetCoordinationAndThreatResponse.addSuperClass(lineOfThought); // Hierarchy Link #15
+
+        // Dynamic Relations (DRels)
+        OntClass dynamicRelation = model.createClass(BASE_URI + "DynamicRelation"); // Class #29
+        OntClass drelSensorFusion = model.createClass(BASE_URI + "DrelSensorFusion"); // Class #30
+        drelSensorFusion.addSuperClass(dynamicRelation); // Hierarchy Link #16
+        OntClass drelSensorConfidence = model.createClass(BASE_URI + "DrelSensorConfidence"); // Class #31
+        drelSensorConfidence.addSuperClass(dynamicRelation); // Hierarchy Link #17
+        OntClass drelFleetOperationalStatus = model.createClass(BASE_URI + "DrelFleetOperationalStatus"); // Class #32
+        drelFleetOperationalStatus.addSuperClass(dynamicRelation); // Hierarchy Link #18
+        OntClass drelFleetCrewFatigue = model.createClass(BASE_URI + "DrelFleetCrewFatigue"); // Class #33
+        drelFleetCrewFatigue.addSuperClass(dynamicRelation); // Hierarchy Link #19
+
+        // Knowledge Sources (KS)
+        OntClass knowledgeSource = model.createClass(BASE_URI + "KnowledgeSource"); // Class #34
+        OntClass ksTR1 = model.createClass(BASE_URI + "KS_TR1"); // Class #35
+        ksTR1.addSuperClass(knowledgeSource); // Hierarchy Link #20
+        OntClass ksTR2 = model.createClass(BASE_URI + "KS_TR2"); // Class #36
+        ksTR2.addSuperClass(knowledgeSource); // Hierarchy Link #21
+        OntClass ksTR3 = model.createClass(BASE_URI + "KS_TR3"); // Class #37
+        ksTR3.addSuperClass(knowledgeSource); // Hierarchy Link #22
+        OntClass ksTR4 = model.createClass(BASE_URI + "KS_TR4"); // Class #38
+        ksTR4.addSuperClass(knowledgeSource); // Hierarchy Link #23
+        OntClass ksTR5 = model.createClass(BASE_URI + "KS_TR5"); // Class #39
+        ksTR5.addSuperClass(knowledgeSource); // Hierarchy Link #24
+        OntClass ksOR1 = model.createClass(BASE_URI + "KS_OR1"); // Class #40
+        ksOR1.addSuperClass(knowledgeSource); // Hierarchy Link #25
+        OntClass ksOR2 = model.createClass(BASE_URI + "KS_OR2"); // Class #41
+        ksOR2.addSuperClass(knowledgeSource); // Hierarchy Link #26
+        OntClass ksOR3 = model.createClass(BASE_URI + "KS_OR3"); // Class #42
+        ksOR3.addSuperClass(knowledgeSource); // Hierarchy Link #27
+        OntClass ksSF1 = model.createClass(BASE_URI + "KS_SF1"); // Class #43
+        ksSF1.addSuperClass(knowledgeSource); // Hierarchy Link #28
+        OntClass ksSF2 = model.createClass(BASE_URI + "KS_SF2"); // Class #44
+        ksSF2.addSuperClass(knowledgeSource); // Hierarchy Link #29
+        OntClass ksSF3 = model.createClass(BASE_URI + "KS_SF3"); // Class #45
+        ksSF3.addSuperClass(knowledgeSource); // Hierarchy Link #30
+        OntClass ksEC1 = model.createClass(BASE_URI + "KS_EC1"); // Class #46
+        ksEC1.addSuperClass(knowledgeSource); // Hierarchy Link #31
+        OntClass ksEC2 = model.createClass(BASE_URI + "KS_EC2"); // Class #47
+        ksEC2.addSuperClass(knowledgeSource); // Hierarchy Link #32
+        OntClass ksEC3 = model.createClass(BASE_URI + "KS_EC3"); // Class #48
+        ksEC3.addSuperClass(knowledgeSource); // Hierarchy Link #33
+        OntClass ksFC1 = model.createClass(BASE_URI + "KS_FC1"); // Class #49
+        ksFC1.addSuperClass(knowledgeSource); // Hierarchy Link #34
+        OntClass ksFC2 = model.createClass(BASE_URI + "KS_FC2"); // Class #50
+        ksFC2.addSuperClass(knowledgeSource); // Hierarchy Link #35
+        OntClass ksFC3 = model.createClass(BASE_URI + "KS_FC3"); // Class #51
+        ksFC3.addSuperClass(knowledgeSource); // Hierarchy Link #36
+    }
+
+    /**
+     * Define ontology properties.
+     */
+    public void createProperties() {
+        // Object Properties
+        ObjectProperty detects = model.createObjectProperty(BASE_URI + "detects"); // Property #1
+        detects.addDomain(model.getOntClass(BASE_URI + "Sensor"));
+        detects.addRange(model.getOntClass(BASE_URI + "Threat"));
+
+        ObjectProperty assignedTo = model.createObjectProperty(BASE_URI + "assignedTo"); // Property #2
+        assignedTo.addDomain(model.getOntClass(BASE_URI + "Ship"));
+        assignedTo.addRange(model.getOntClass(BASE_URI + "Fleet"));
+
+        ObjectProperty engages = model.createObjectProperty(BASE_URI + "engages"); // Property #3
+        engages.addDomain(model.getOntClass(BASE_URI + "Weapon"));
+        engages.addRange(model.getOntClass(BASE_URI + "Threat"));
+
+        ObjectProperty makesDecision = model.createObjectProperty(BASE_URI + "makesDecision"); // Property #4
+        makesDecision.addDomain(model.getOntClass(BASE_URI + "Fleet"));
+        makesDecision.addRange(model.getOntClass(BASE_URI + "TacticalDecision"));
+
+        ObjectProperty informs = model.createObjectProperty(BASE_URI + "informs"); // Property #5
+        informs.addDomain(model.getOntClass(BASE_URI + "Sensor"));
+        informs.addRange(model.getOntClass(BASE_URI + "Fleet"));
+
+        ObjectProperty prioritizes = model.createObjectProperty(BASE_URI + "prioritizes"); // Property #6
+        prioritizes.addDomain(model.getOntClass(BASE_URI + "TacticalDecision"));
+        prioritizes.addRange(model.getOntClass(BASE_URI + "Threat"));
+
+        // Datatype Properties
+        DatatypeProperty threatLevel = model.createDatatypeProperty(BASE_URI + "threatLevel"); // Property #7
+        threatLevel.addDomain(model.getOntClass(BASE_URI + "Threat"));
+
+        DatatypeProperty confidenceLevel = model.createDatatypeProperty(BASE_URI + "confidenceLevel"); // Property #8
+        confidenceLevel.addDomain(model.getOntClass(BASE_URI + "Sensor"));
+
+        DatatypeProperty readinessLevel = model.createDatatypeProperty(BASE_URI + "readinessLevel"); // Property #9
+        readinessLevel.addDomain(model.getOntClass(BASE_URI + "Fleet"));
+
+        DatatypeProperty sensorAccuracy = model.createDatatypeProperty(BASE_URI + "sensorAccuracy"); // Property #10
+        sensorAccuracy.addDomain(model.getOntClass(BASE_URI + "Sensor"));
+
+        DatatypeProperty engagementOutcome = model.createDatatypeProperty(BASE_URI + "engagementOutcome"); // Property #11
+        engagementOutcome.addDomain(model.getOntClass(BASE_URI + "Weapon"));
+
+        DatatypeProperty decisionPriority = model.createDatatypeProperty(BASE_URI + "decisionPriority"); // Property #12
+        decisionPriority.addDomain(model.getOntClass(BASE_URI + "TacticalDecision"));
+
+        // Additional Properties for Clouds, LoTs, and DRels
+        ObjectProperty containsKS = model.createObjectProperty(BASE_URI + "containsKS"); // Property #13
+        containsKS.addDomain(model.getOntClass(BASE_URI + "Cloud"));
+        containsKS.addRange(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        ObjectProperty hasStep = model.createObjectProperty(BASE_URI + "hasStep"); // Property #14
+        hasStep.addDomain(model.getOntClass(BASE_URI + "LineOfThought"));
+        hasStep.addRange(model.getOntClass(BASE_URI + "Step"));
+
+        ObjectProperty feedsDetection = model.createObjectProperty(BASE_URI + "feedsDetection"); // Property #15
+        feedsDetection.addDomain(model.getOntClass(BASE_URI + "DrelSensorFusion"));
+        feedsDetection.addRange(model.getOntClass(BASE_URI + "SensorFusionCloud"));
+
+        ObjectProperty feedsConfidence = model.createObjectProperty(BASE_URI + "feedsConfidence"); // Property #16
+        feedsConfidence.addDomain(model.getOntClass(BASE_URI + "DrelSensorConfidence"));
+        feedsConfidence.addRange(model.getOntClass(BASE_URI + "SensorFusionCloud"));
+
+        ObjectProperty updatesStatus = model.createObjectProperty(BASE_URI + "updatesStatus"); // Property #17
+        updatesStatus.addDomain(model.getOntClass(BASE_URI + "DrelFleetOperationalStatus"));
+        updatesStatus.addRange(model.getOntClass(BASE_URI + "OperationalReadinessCloud"));
+
+        ObjectProperty feedsFatigue = model.createObjectProperty(BASE_URI + "feedsFatigue"); // Property #18
+        feedsFatigue.addDomain(model.getOntClass(BASE_URI + "DrelFleetCrewFatigue"));
+        feedsFatigue.addRange(model.getOntClass(BASE_URI + "OperationalReadinessCloud"));
+
+        // Relations for Lines of Thought (LoT)
+        ObjectProperty hasNextStep = model.createObjectProperty(BASE_URI + "hasNextStep"); // Property #19
+        hasNextStep.addDomain(model.getOntClass(BASE_URI + "Step"));
+        hasNextStep.addRange(model.getOntClass(BASE_URI + "Step"));
+
+        ObjectProperty involvesKS = model.createObjectProperty(BASE_URI + "involvesKS"); // Property #20
+        involvesKS.addDomain(model.getOntClass(BASE_URI + "Step"));
+        involvesKS.addRange(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        // Relations for Dynamic Relations (DRels)
+        ObjectProperty informsThreat = model.createObjectProperty(BASE_URI + "informsThreat"); // Property #21
+        informsThreat.addDomain(model.getOntClass(BASE_URI + "DrelSensorFusion"));
+        informsThreat.addRange(model.getOntClass(BASE_URI + "ThreatResponseCloud"));
+
+        ObjectProperty informsEngagement = model.createObjectProperty(BASE_URI + "informsEngagement"); // Property #22
+        informsEngagement.addDomain(model.getOntClass(BASE_URI + "DrelSensorConfidence"));
+        informsEngagement.addRange(model.getOntClass(BASE_URI + "ThreatResponseCloud"));
+
+        ObjectProperty providesSignatures = model.createObjectProperty(BASE_URI + "providesSignatures"); // Property #23
+        providesSignatures.addDomain(model.getOntClass(BASE_URI + "DrelFleetOperationalStatus"));
+        providesSignatures.addRange(model.getOntClass(BASE_URI + "EnemyClassificationCloud"));
+
+        ObjectProperty providesHistoricalData = model.createObjectProperty(BASE_URI + "providesHistoricalData"); // Property #24
+        providesHistoricalData.addDomain(model.getOntClass(BASE_URI + "DrelFleetCrewFatigue"));
+        providesHistoricalData.addRange(model.getOntClass(BASE_URI + "EnemyClassificationCloud"));
+
+        ObjectProperty updatesThreatSeverity = model.createObjectProperty(BASE_URI + "updatesThreatSeverity"); // Property #25
+        updatesThreatSeverity.addDomain(model.getOntClass(BASE_URI + "DrelFleetOperationalStatus"));
+        updatesThreatSeverity.addRange(model.getOntClass(BASE_URI + "FleetCoordinationCloud"));
+
+        ObjectProperty updatesFormation = model.createObjectProperty(BASE_URI + "updatesFormation"); // Property #26
+        updatesFormation.addDomain(model.getOntClass(BASE_URI + "DrelFleetCrewFatigue"));
+        updatesFormation.addRange(model.getOntClass(BASE_URI + "FleetCoordinationCloud"));
+
+        ObjectProperty evaluatesConfidence = model.createObjectProperty(BASE_URI + "evaluatesConfidence"); // Property #27
+        evaluatesConfidence.addDomain(model.getOntClass(BASE_URI + "DrelSensorFusion"));
+        evaluatesConfidence.addRange(model.getOntClass(BASE_URI + "ThreatResponseCloud"));
+
+        ObjectProperty evaluatesThreat = model.createObjectProperty(BASE_URI + "evaluatesThreat"); // Property #28
+        evaluatesThreat.addDomain(model.getOntClass(BASE_URI + "DrelSensorConfidence"));
+        evaluatesThreat.addRange(model.getOntClass(BASE_URI + "ThreatResponseCloud"));
+
+        // Additional Properties for KERAIA Properties
+        DatatypeProperty classification = model.createDatatypeProperty(BASE_URI + "classification"); // Property #29
+        classification.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty combinedConfidence = model.createDatatypeProperty(BASE_URI + "combinedConfidence"); // Property #30
+        combinedConfidence.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty confirmedTracks = model.createDatatypeProperty(BASE_URI + "confirmedTracks"); // Property #31
+        confirmedTracks.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty decisionThreshold = model.createDatatypeProperty(BASE_URI + "decisionThreshold"); // Property #32
+        decisionThreshold.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty detectionCapability = model.createDatatypeProperty(BASE_URI + "detectionCapability"); // Property #33
+        detectionCapability.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty detectionMode = model.createDatatypeProperty(BASE_URI + "detectionMode"); // Property #34
+        detectionMode.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty formation = model.createDatatypeProperty(BASE_URI + "formation"); // Property #35
+        formation.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty fusionAlgorithm = model.createDatatypeProperty(BASE_URI + "fusionAlgorithm"); // Property #36
+        fusionAlgorithm.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty maneuverStrategy = model.createDatatypeProperty(BASE_URI + "maneuverStrategy"); // Property #37
+        maneuverStrategy.addDomain(model.getOntClass(BASE_URI + "LineOfThought"));
+
+        DatatypeProperty range = model.createDatatypeProperty(BASE_URI + "range"); // Property #38
+        range.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty recentSightings = model.createDatatypeProperty(BASE_URI + "recentSightings"); // Property #39
+        recentSightings.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty recommendedAction = model.createDatatypeProperty(BASE_URI + "recommendedAction"); // Property #40
+        recommendedAction.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty rulesOfEngagement = model.createDatatypeProperty(BASE_URI + "rulesOfEngagement"); // Property #41
+        rulesOfEngagement.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty sensorRange = model.createDatatypeProperty(BASE_URI + "sensorRange"); // Property #42
+        sensorRange.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty status = model.createDatatypeProperty(BASE_URI + "status"); // Property #43
+        status.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty trackingAlgorithm = model.createDatatypeProperty(BASE_URI + "trackingAlgorithm"); // Property #44
+        trackingAlgorithm.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty knownSignatures = model.createDatatypeProperty(BASE_URI + "knownSignatures"); // Property #45
+        knownSignatures.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty operationalStatus = model.createDatatypeProperty(BASE_URI + "operationalStatus"); // Property #46
+        operationalStatus.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty crewFatigueLevel = model.createDatatypeProperty(BASE_URI + "crewFatigueLevel"); // Property #47
+        crewFatigueLevel.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty historicalEngagementData = model.createDatatypeProperty(BASE_URI + "historicalEngagementData"); // Property #48
+        historicalEngagementData.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty engagementDecision = model.createDatatypeProperty(BASE_URI + "engagementDecision"); // Property #49
+        engagementDecision.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty highConfidenceDetection = model.createDatatypeProperty(BASE_URI + "highConfidenceDetection"); // Property #50
+        highConfidenceDetection.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty missionFeasibility = model.createDatatypeProperty(BASE_URI + "missionFeasibility"); // Property #51
+        missionFeasibility.addDomain(model.getOntClass(BASE_URI + "LineOfThought"));
+
+        DatatypeProperty fleetFormation = model.createDatatypeProperty(BASE_URI + "fleetFormation"); // Property #52
+        fleetFormation.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty threatAssessment = model.createDatatypeProperty(BASE_URI + "threatAssessment"); // Property #53
+        threatAssessment.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty decisionModel = model.createDatatypeProperty(BASE_URI + "decisionModel"); // Property #54
+        decisionModel.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty step1 = model.createDatatypeProperty(BASE_URI + "step1"); // Property #55
+        step1.addDomain(model.getOntClass(BASE_URI + "LineOfThought"));
+
+        DatatypeProperty step2 = model.createDatatypeProperty(BASE_URI + "step2"); // Property #56
+        step2.addDomain(model.getOntClass(BASE_URI + "LineOfThought"));
+
+        DatatypeProperty step3 = model.createDatatypeProperty(BASE_URI + "step3"); // Property #57
+        step3.addDomain(model.getOntClass(BASE_URI + "LineOfThought"));
+
+        DatatypeProperty step4 = model.createDatatypeProperty(BASE_URI + "step4"); // Property #58
+        step4.addDomain(model.getOntClass(BASE_URI + "LineOfThought"));
+
+        DatatypeProperty juncture = model.createDatatypeProperty(BASE_URI + "juncture"); // Property #59
+        juncture.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+
+        DatatypeProperty dimension = model.createDatatypeProperty(BASE_URI + "dimension"); // Property #60
+        dimension.addDomain(model.getOntClass(BASE_URI + "KnowledgeSource"));
+    }
+
+    /**
+     * Define SWRL Rules.
+     */
+    public List<String> createSWRLRules() {
+        List<String> rules = new ArrayList<>();
+
+        rules.add("SWRL Rule #1: ?sensor rdf:type :Sensor , :detects ?threat , :confidenceLevel ?conf -> IF ?conf > 0.8 THEN ?threat :threatLevel 5");
+        rules.add("SWRL Rule #2: ?ship rdf:type :Destroyer , :assignedTo ?fleet -> ?fleet :readinessLevel 'HIGH'");
+        rules.add("SWRL Rule #3: ?threat rdf:type :SubmarineThreat -> ?threat :requiresCountermeasures 'TRUE'");
+        rules.add("SWRL Rule #4: ?sensor rdf:type :RadarSensor , :sensorAccuracy ?accuracy -> IF ?accuracy > 0.85 THEN ?sensor :isReliable 'TRUE'");
+        rules.add("SWRL Rule #5: ?fleet rdf:type :Fleet , :makesDecision ?decision -> ?decision :decisionPriority 1");
+        rules.add("SWRL Rule #6: ?fleet rdf:type :Fleet , :engages ?threat -> ?threat :engagementOutcome 'MITIGATED'");
+        rules.add("SWRL Rule #7: ?sensor rdf:type :SurveillanceSensor , :detects ?threat -> ?threat :classifiedAs 'POTENTIAL'");
+        rules.add("SWRL Rule #8: ?weapon rdf:type :Weapon , :engages ?threat -> ?threat :status 'NEUTRALIZED'");
+        rules.add("SWRL Rule #9: ?tacticalDecision rdf:type :TacticalDecision , :prioritizes ?threat -> ?threat :priorityLevel 3");
+        rules.add("SWRL Rule #10: ?threat rdf:type :AirborneThreat , :detectedBy ?sensor -> ?sensor :requiresCalibration 'TRUE'");
+
+        return rules;
+    }
+
+    /**
+     * Define SWRL-Derived Relations.
+     */
+    public void createSWRLDerivedRelations() {
+        model.createObjectProperty(BASE_URI + "requiresCountermeasures"); // Derived Relation #1
+        model.createObjectProperty(BASE_URI + "classifiedAs"); // Derived Relation #2
+        model.createObjectProperty(BASE_URI + "requiresCalibration"); // Derived Relation #3
+    }
+
+    public static void main(String[] args) {
+        NavalOntology navalOntology = new NavalOntology();
+        navalOntology.createClasses();
+        navalOntology.createProperties();
+        navalOntology.createSWRLDerivedRelations();
+
+        List<String> rules = navalOntology.createSWRLRules();
+        for (String rule : rules) {
+            System.out.println(rule);
+        }
+    }
+}
+
+/*
+Objects:
+1. Threat
+2. Ship
+3. Fleet
+4. Sensor
+5. Weapon
+6. TacticalDecision
+7. Mission
+8. SurveillanceMission
+9. AttackPlan
+10. FleetCoordination
+11. ThreatResponse
+12. SubmarineThreat
+13. AirborneThreat
+14. Destroyer
+15. Frigate
+16. SurveillanceSensor
+17. RadarSensor
+18. Cloud
+19. ThreatResponseCloud
+20. OperationalReadinessCloud
+21. SensorFusionCloud
+22. EnemyClassificationCloud
+23. FleetCoordinationCloud
+24. LineOfThought
+25. LotThreatDetectionAndClassification
+26. LotOperationalReadinessAssessment
+27. LotSensorFusionForDecisionMaking
+28. LotFleetCoordinationAndThreatResponse
+29. DynamicRelation
+30. DrelSensorFusion
+31. DrelSensorConfidence
+32. DrelFleetOperationalStatus
+33. DrelFleetCrewFatigue
+34. KnowledgeSource
+35. KS_TR1
+36. KS_TR2
+37. KS_TR3
+38. KS_TR4
+39. KS_TR5
+40. KS_OR1
+41. KS_OR2
+42. KS_OR3
+43. KS_SF1
+44. KS_SF2
+45. KS_SF3
+46. KS_EC1
+47. KS_EC2
+48. KS_EC3
+49. KS_FC1
+50. KS_FC2
+51. KS_FC3
+
+Properties:
+1. detects
+2. assignedTo
+3. engages
+4. makesDecision
+5. informs
+6. prioritizes
+7. threatLevel
+8. confidenceLevel
+9. readinessLevel
+10. sensorAccuracy
+11. engagementOutcome
+12. decisionPriority
+13. containsKS
+14. hasStep
+15. feedsDetection
+16. feedsConfidence
+17. updatesStatus
+18. feedsFatigue
+19. hasNextStep
+20. involvesKS
+21. informsThreat
+22. informsEngagement
+23. providesSignatures
+24. providesHistoricalData
+25. updatesThreatSeverity
+26. updatesFormation
+27. evaluatesConfidence
+28. evaluatesThreat
+29. classification
+30. combinedConfidence
+31. confirmedTracks
+32. decisionThreshold
+33. detectionCapability
+34. detectionMode
+35. formation
+36. fusionAlgorithm
+37. maneuverStrategy
+38. range
+39. recentSightings
+40. recommendedAction
+41. rulesOfEngagement
+42. sensorRange
+43. status
+44. trackingAlgorithm
+45. knownSignatures
+46. operationalStatus
+47. crewFatigueLevel
+48. historicalEngagementData
+49. engagementDecision
+50. highConfidenceDetection
+51. missionFeasibility
+52. fleetFormation
+53. threatAssessment
+54. decisionModel
+55. step1
+56. step2
+57. step3
+58. step4
+59. juncture
+60. dimension
+
+Relations:
+1. detects
+2. assignedTo
+3. engages
+4. makesDecision
+5. informs
+6. prioritizes
+7. requiresCountermeasures
+8. classifiedAs
+9. requiresCalibration
+10. containsKS
+11. hasStep
+12. feedsDetection
+13. feedsConfidence
+14. updatesStatus
+15. feedsFatigue
+16. hasNextStep
+17. involvesKS
+18. informsThreat
+19. informsEngagement
+20. providesSignatures
+21. providesHistoricalData
+22. updatesThreatSeverity
+23. updatesFormation
+24. evaluatesConfidence
+25. evaluatesThreat
+
+
+*/
+
