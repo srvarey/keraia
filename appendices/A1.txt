@@ -1,0 +1,16 @@
+Index:        1 / 10 (Convocation : Naval Scenario)
+---------------------------------------------------
+Heading:      Situation Element Perception Refinement
+
+Description:  Focuses on improving the accuracy
+              and clarity of perceived situational elements.
+              The goal is to ensure that what's observed or
+              received is a true representation of the
+              actual situation.
+
+Vortexes:
+              Existence_Size_Analysis
+              Identity_Analysis
+              Kinematics_Analysis
+---------------------------------------------------
+
