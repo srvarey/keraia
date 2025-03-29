@@ -1,0 +1,43 @@
+
+```
+Water Treatment Plant
+- Raw Water Intake
+  - Screens
+    - Blockage
+    - Mechanical Failure
+  - Pumps
+    - Insufficient Flow
+    - Cavitation
+- Coagulation and Flocculation
+  - Coagulant Dosage System
+    - Incorrect Dosage
+    - Clogging
+  - Mixing Units
+    - Inefficient Mixing
+    - Motor Issues
+- Sedimentation
+  - Clarifiers
+    - Sludge Buildup
+    - Poor Settling
+- Filtration
+  - Rapid Sand Filters
+    - Filter Media Issues
+    - Backwash Problems
+  - Activated Carbon Filters
+    - Exhausted Carbon
+    - Channeling
+- Disinfection
+  - Chlorination Units
+    - Low Chlorine Residual
+    - Chlorine Gas Leak
+  - UV Treatment Units
+    - Lamp Failure
+    - Inadequate UV Dose
+- Water Storage
+  - Clear Water Tanks
+    - Contamination
+    - Tank Leakage
+  - Service Reservoirs
+    - Water Level Fluctuations
+    - Structural Damage
+```
