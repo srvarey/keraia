@@ -1,7 +1,8 @@
-<h2 style="color: teal;">Custom Colored Heading</h2>
-
+============
 # In the abstract, please highlight research question and contributions.
 This dissertation presents KERAIA, a framework for symbolic knowledge engineering designed to address the challenges of representing, reasoning with, and executing knowledge in dynamic and complex environments. The central research question is: How can unstructured human expertise be transformed into algorithms that AI can efficiently utilize? This research advances symbolic knowledge engineering by addressing this question through innovative representation and reasoning techniques.
+
+============
 
 
 
