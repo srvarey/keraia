@@ -83,7 +83,7 @@ _The use of KLines and LoTs provides explicit reasoning pathways, enabling users
 _KERAIA's contributions, as highlighted in these comparisons add some postivie incremental advancements in knowledge-based systems. By addressing limitations of traditional systems, KERAIA aims to offer a more flexible, adaptable, and explainable approach to knowledge representation and reasoning._
 
 =======================================================================================================
-AMENDMENT 4 - # In Chapter 2, some connection and comparison against other systems will be good to have. You may also summarize what KR community has been doing in the past decades.
+# AMENDMENT 4 - In Chapter 2, some connection and comparison against other systems will be good to have. You may also summarize what KR community has been doing in the past decades.
 =======================================================================================================
 
 
@@ -165,7 +165,7 @@ By explicitly connecting KERAIA's features to the historical context and compari
 
 
 =======================================================================================================
-AMENDMENT 5 - # Which part of KERAIA is essential? It might be good to explain why those features are chosen. Why syntax and semantics are defined like this, and any validation considered?
+# AMENDMENT 5 - Which part of KERAIA is essential? It might be good to explain why those features are chosen. Why syntax and semantics are defined like this, and any validation considered?
 =======================================================================================================
 
 
