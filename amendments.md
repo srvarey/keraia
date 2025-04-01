@@ -1,5 +1,5 @@
 =======================================================================================================
-# In the abstract, please highlight research question and contributions.
+# AMENDMENT 1 - In the abstract, please highlight research question and contributions.
 =======================================================================================================
 This dissertation presents KERAIA, a framework for symbolic knowledge engineering designed to address the challenges of representing, reasoning with, and executing knowledge in dynamic and complex environments. The central research question is: How can unstructured human expertise be transformed into algorithms that AI can efficiently utilize? This research advances symbolic knowledge engineering by addressing this question through innovative representation and reasoning techniques.
 
@@ -11,11 +11,14 @@ _Core innovations of KERAIA include Clouds of Knowledge, which integrate diverse
 
 _By addressing some of the limitations of earlier AI initiatives and adhering to explainable AI principles, KERAIA aims to contribute meaningfully to symbolic knowledge engineering by fostering human-machine collaboration and enhancing the practical utility of AI systems._
 
-# In Ch1, can have a separated page for publications?
+=======================================================================================================
+# AMENDMENT 2 - In Ch1, can have a separated page for publications?
+=======================================================================================================
 
 
-
-# Ch 1 - It worthy to summarise KERAIA’s distinct features against other KBS.
+=======================================================================================================
+# AMENDMENT 3 - Ch 1 - It worthy to summarise KERAIA’s distinct features against other KBS.
+=======================================================================================================
 
 
 
@@ -79,7 +82,9 @@ _The use of KLines and LoTs provides explicit reasoning pathways, enabling users
 
 _KERAIA's contributions, as highlighted in these comparisons add some postivie incremental advancements in knowledge-based systems. By addressing limitations of traditional systems, KERAIA aims to offer a more flexible, adaptable, and explainable approach to knowledge representation and reasoning._
 
-# In Chapter 2, some connection and comparison against other systems will be good to have. You may also summarize what KR community has been doing in the past decades.
+=======================================================================================================
+AMENDMENT 4 - # In Chapter 2, some connection and comparison against other systems will be good to have. You may also summarize what KR community has been doing in the past decades.
+=======================================================================================================
 
 
 
@@ -157,7 +162,12 @@ This emphasis aligns with the increasing importance placed on explainability wit
 
 By explicitly connecting KERAIA's features to the historical context and comparing its capabilities to those of other knowledge-based systems, Chapter 2 can effectively demonstrate its contributions and position it as a significant advancement in the field.
 
-# Which part of KERAIA is essential? It might be good to explain why those features are chosen. Why syntax and semantics are defined like this, and any validation considered?
+
+
+=======================================================================================================
+AMENDMENT 5 - # Which part of KERAIA is essential? It might be good to explain why those features are chosen. Why syntax and semantics are defined like this, and any validation considered?
+=======================================================================================================
+
 
 ## Essential Parts of KERAIA
 
@@ -440,7 +450,11 @@ Implementing a robust validation framework is crucial for ensuring data integrit
 Implementing these validation mechanisms is essential for building a reliable and maintainable knowledge-based system using the KS class. Ideally, these validations should be integrated directly into the KS class to enhance its robustness and usability.
 
 
-# Besides feasibility study, is it possible to have some quantitative evaluation? E.g., the complexity regarding the number of statements/beliefs?
+
+=======================================================================================================
+AMENDMENT 6 - # Besides feasibility study, is it possible to have some quantitative evaluation? E.g., the complexity regarding the number of statements/beliefs?
+=======================================================================================================
+
 
 ### Quantitative Evaluation of KERAIA
 
@@ -475,7 +489,10 @@ Information-Theoretic Measures: Applying concepts from Information Theory, such 
 
 complexity.
 
-#  Could you please elaborate evidence regarding ethics, explainability, transparency, rather than general discussion? For a better readability, for example, the main content can be more compact and focused.
+
+=======================================================================================================
+# AMENDMENT 7  - Could you please elaborate evidence regarding ethics, explainability, transparency, rather than general discussion? For a better readability, for example, the main content can be more compact and focused.
+=======================================================================================================
 
 
 Justifiable Explanations: KERAIA incorporates reasoning pathways that provide explanations and justifications for its decisions. The KERAIA API includes an addExplain method which can be inserted anywhere when building clouds of knowledge and knoweldges sources.
@@ -1197,7 +1214,9 @@ This mission narrative demonstrates the critical role of assumptions and justifi
 In naval scenarios—where stakes are high and conditions volatile—such explainable frameworks are indispensable. They not only guide immediate actions but also support continuous learning and resilience for future missions.
 
 
-# How does the KR community, or even broader AI community, can benefit from your work, beyond good case studies.
+=======================================================================================================
+AMENDMENT 8 - # How does the KR community, or even broader AI community, can benefit from your work, beyond good case studies.
+=======================================================================================================
 
 
 
@@ -1219,7 +1238,11 @@ Introducing Novel Benchmarking Approaches: The thesis introduces the Multidimens
 
 By addressing these key challenges and introducing innovative features, KERAIA contributes to the advancement of knowledge engineering and AI. The system provides researchers and developers with a valuable tool for building more sophisticated, explainable, and ethical AI systems that can effectively leverage human expertise and tackle real-world problems across diverse domains.
 
-# Chapter 3: Add brief, practical examples for complex concepts like Dynamic Relations (dRels) to improve clarity for readers, especially those unfamiliar with advanced knowledge representation.
+
+
+=======================================================================================================
+AMENDMENT 9 - # Chapter 3: Add brief, practical examples for complex concepts like Dynamic Relations (dRels) to improve clarity for readers, especially those unfamiliar with advanced knowledge representation.
+=======================================================================================================
 
 
 # Understanding Dynamic Relations (dRels)
@@ -1326,9 +1349,11 @@ Here are ten practical examples illustrating the power of dRels:
 
 Dynamic Relations (dRels) offer **flexibility**, **adaptability**, and **context-awareness** beyond what ontologies can provide. While ontologies define static structures, dRels capture the nuanced, ever-changing relationships of the real world—making them a foundational component of intelligent systems.
 
-# Chapter 3: Provide a simple workflow or visual diagram for how users can add or update rules, to enhance understanding of KERAIA’s practical usability without major interface changes.
 
-<![endif]-->
+=======================================================================================================
+AMENDMENT 10 - # Chapter 3: Provide a simple workflow or visual diagram for how users can add or update rules, to enhance understanding of KERAIA’s practical usability without major interface changes.
+=======================================================================================================
+
 
 Rule Management in KERAIA is part of the knowledge aquistion process and we can represent the workflow as
 
@@ -1452,7 +1477,9 @@ https://github.com/srvarey/keraia/blob/main/rulegui/facteditor.png
 
 No interface changes are needed since rules are compiled on the fly. Moreover a domain expert user can make the changes, obviating the need for a programmer to implement code changes.
 
-# Chapter 4:  Include a few sentences per case study summarising why KERAIA outperforms traditional methods, emphasising specific advantages like flexibility or adaptability.
+=======================================================================================================
+# AMENDMENT 11 - Chapter 4:  Include a few sentences per case study summarising why KERAIA outperforms traditional methods, emphasising specific advantages like flexibility or adaptability.
+=======================================================================================================
 
 
 
